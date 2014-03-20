@@ -1,6 +1,7 @@
 windirs
 ---------
 A ruby gem to convert between Unix, Windows, and Cygwin paths.
+NOTHING HAS BEEN IMPLEMENTED
 
 Installation
 ---------
