@@ -1,0 +1,36 @@
+.TH windirs 1 windirs\-0.0.1
+.SH NAME
+windirs \- translate Windows, Cygwin, and Unix paths
+.SH SYNOPSIS
+.B windirs [OPTIONS] [PATH]
+.SH DESCRIPTION
+.B windirs
+translates 
+.SH OPTIONS
+.LP
+.B --help 
+Print a brief usage message.
+.LP
+.B --unix
+translate to unix. This is the default.
+.B --cygwin
+translate to cygwin.
+.B --windows
+translate to windows.
+.SH EXAMPLES
+.LP
+.B windirs --cygwin 'C:\\\\Users\\\\noah\\\\Desktop'
+.br
+.B /cygdrive/c/Users/noah/Desktop
+.SH SEE ALSO
+.TP
+.BR ruby(1)
+.TP
+.BR cygpath(1)
+.SH BUGS
+probably.
+.SH LICENSE
+Copyright 2014 Noah Birnel
+.sp
+MIT License
+
