@@ -1,0 +1,15 @@
+a gem providing some Dir and File methods for getting unixy and windows
+file paths no matter what system one is on. e.g., be able to generate
+ C:\Users\joe\Desktop      #Windows 
+from 
+ C:/Users/joe/Desktop      #native Ruby on Windows
+or from 
+ /cygdrive/c/Users/joe/Desktop      #native Ruby on Windows
+
+It would be nice to be able to convert mapped drives to UNC
+(and vice versa, though that is not neccessarily determinate).
+This, however, may be hard.
+
+maybe these are just String methods? Or new classes?
+CygDir.new "C:\Users\joe\Desktop"
+=> "/cygdrive/c/Users/joe/Desktop"
