@@ -1,28 +1,41 @@
 require  "#{File.dirname(__FILE__)}/../lib/windirs"
 
 describe Windirs do
+
   before do
-    dpath_strings = {
-      :cygpath  => '/cygdrive/c/Users/joe/Desktop',
-      :winpath  => 'C:\Users\joe\Desktop',
-      :rubypath => 'C:/Users/joe/Desktop',
+    @drives = {
+      :cygwin  => '/cygdrive/c/Users/joe/Desktop',
+      :windows => 'C:\Users\joe\Desktop',
+      :rubywin => 'C:/Users/joe/Desktop',
     }
     @dpaths = Hash.new
-    dpath_strings.map{|k, v| @dpaths[k] = Windirs::Path.new(v)}
+    @drives.map{|k, v| @dpaths[k] = Windirs::Path.new(v)}
 
-    upath_strings = {
+    @unc = {
       :unc      => '\\windomain\somedir\file',
       :cygunc   => '//windomain/somedir/file',
     }
     @upaths = Hash.new
-    upath_strings.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
+    @unc.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
+
   end
 
   describe Windirs::Path do
 
-    it 'converts from windows drive' do
-      @dpaths[:winpath].cygwin.should eq '/cygdrive/c/Users/joe/Desktop'
+    it 'converts from windows to cygwin' do
+      @dpaths[:windows].cygwin.should eq @drives[:cygwin]
     end
+
+    it 'converts from windows to rubywin' do
+      @dpaths[:windows].rubywin.should eq @drives[:rubywin]
+    end
+
+   # it 'converts everything' do
+   #   @drives.keys.repeated_permutation(2).each do |from, to|
+   #     puts "converts from #{from} to #{to}"
+   #     @dpaths[from].method(to).call.should eq @drives[to]
+   #   end
+   # end
 
   end
 

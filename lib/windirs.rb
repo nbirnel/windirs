@@ -6,9 +6,12 @@ module Windirs
   class Path
 
     def initialize path, cygdrive_prefix = '/cygdrive'
-      drive_re = Regexp.new '^((?<drive>[A-Z]):)?(?<dirs>[/\\\].*)$'
+      dirs     = '(?<dirs>[/\\\].*)$'
+      windrive = '((?<drive>[A-Z]):)?'
+      cygdrive = "(#{cygdrive_prefix}/(?<drive>[a-z]))?"
+      path_re  = Regexp.new('^' + windrive + dirs)
 
-      if drive_re =~ path
+      if path_re =~ path
         m = Regexp.last_match
         @drive = m[:drive]
         @dirs  = m[:dirs]
@@ -21,10 +24,14 @@ module Windirs
       "#{cygdrive}#{dirs}"
     end
 
-    def ruby_win
+    def rubywin
+      dirs = @dirs.gsub '\\', '/'
+      "#{@drive.upcase}:#{dirs}"
     end
 
     def windows
+      dirs = @dirs.gsub '/', '\\'
+      "#{@drive.upcase}:#{dirs}"
     end
 
   end
