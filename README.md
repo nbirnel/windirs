@@ -88,7 +88,7 @@ translate Windows, Cygwin, and Unix paths</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>windirs</b>
-translates</p>
+translates Windows, Cygwin, and Unix paths to and fro.</p>
 
 <h2>OPTIONS
 <a name="OPTIONS"></a>
@@ -125,7 +125,8 @@ cygpath(1)</b></p>
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em">probably.</p>
+<p style="margin-left:11%; margin-top: 1em">It is
+superfluous to <b>cygpath(1).</b> Probably others.</p>
 
 <h2>LICENSE
 <a name="LICENSE"></a>
