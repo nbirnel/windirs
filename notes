@@ -13,3 +13,53 @@ This, however, may be hard.
 maybe these are just String methods? Or new classes?
 CygDir.new "C:\Users\joe\Desktop"
 => "/cygdrive/c/Users/joe/Desktop"
+
+jruby on linux
+jruby-1.7.10 :001 > RUBY_PLATFORM
+ => "java" 
+jruby-1.7.10 :002 > Dir.pwd
+ => "/home/noah/devel/bread-calculator" 
+
+irb(main):001:0> RUBY_PLATFORM
+=> "i386-cygwin"
+irb(main):002:0> Dir.pwd
+=> "/cygdrive/c/Users/nbirnel/devel/windirs"
+irb(main):003:0>
+
+native ruby on windows
+irb(main):001:0> RUBY_PLATFORM
+=> "i386-mingw32"
+"C:/Users/nbirnel"
+
+rvm use system on linux
+irb(main):001:0> RUBY_PLATFORM
+=> "x86_64-linux-gnu"
+irb(main):002:0> 
+
+
+from :
+http://stackoverflow.com/questions/170956/how-can-i-find-which-operating-system-my-ruby-program-is-running-on
+module OS
+  def OS.windows?
+    (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.mac?
+   (/darwin/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.unix?
+    !OS.windows?
+  end
+
+  def OS.linux?
+    OS.unix? and not OS.mac?
+  end
+end
+
+File::SEPARATOR
+=> "/"
+
+ENV['OS']
+=> "Windows_NT"
+
