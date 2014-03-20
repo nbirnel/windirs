@@ -99,9 +99,15 @@ translates Windows, Cygwin, and Unix paths to and fro.</p>
 Print a brief usage message.</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>--unix</b>
-translate to unix. This is the default. <b>--cygwin</b>
-translate to cygwin. <b>--windows</b> translate to
-windows.</p>
+translate to unix. This is the default.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>--cygwin</b>
+translate to cygwin.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>--windows</b>
+translate to windows.</p>
 
 <h2>EXAMPLES
 <a name="EXAMPLES"></a>
