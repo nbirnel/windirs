@@ -20,21 +20,24 @@ module Windirs
     end
 
     def cygwin cygdrive_prefix = '/cygdrive'
-      cygdrive = @drive ? "#{cygdrive_prefix}/#{@drive.downcase}" : nil
-      dirs = @dirs.gsub '\\', '/'
-      "#{cygdrive}#{dirs}"
+      drive = @drive ? "#{cygdrive_prefix}/#{@drive.downcase}" : nil
+      "#{drive}#{@dirs}".gsub('\\', '/')
     end
 
     def rubywin
-      return nil unless @drive
-      dirs = @dirs.gsub '\\', '/'
-      "#{@drive.upcase}:#{dirs}"
+      drive = @drive ? "#{@drive.upcase}:" : nil
+      "#{drive}#{@dirs}".gsub('\\', '/')
     end
 
     def windows
-      return nil unless @drive
-      dirs = @dirs.gsub '/', '\\'
-      "#{@drive.upcase}:#{dirs}"
+      drive = @drive ? "#{@drive.upcase}:" : nil
+      "#{drive}#{@dirs}".gsub('/', '\\')
+    end
+
+    def nix 
+      drive = @drive ? "#{@drive.upcase}:" : nil    #FIXME this is just for futrre metaprogramming
+      return false if drive
+      "#{drive}#{@dirs}".gsub('\\', '/')
     end
 
   end

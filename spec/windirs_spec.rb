@@ -11,37 +11,37 @@ describe Windirs do
     @dpaths = Hash.new
     @drives.map{|k, v| @dpaths[k] = Windirs::Path.new(v)}
 
-    @unc = {
-      :unc      => '\\windomain\somedir\file',
-      :cygunc   => '//windomain/somedir/file',
+    @uncs = {
+      :windows => '\\\\windomain\somedir\file',
+      :cygwin  => '//windomain/somedir/file',
+      :rubywin => '//windomain/somedir/file',
+      :nix     => '//windomain/somedir/file',
     }
     @upaths = Hash.new
-    @unc.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
+    @uncs.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
 
   end
 
   describe Windirs::Path do
 
-#    it 'converts from windows to cygwin' do
-#      @dpaths[:windows].cygwin.should eq @drives[:cygwin]
-#    end
-#
-#    it 'converts from windows to rubywin' do
-#      @dpaths[:windows].rubywin.should eq @drives[:rubywin]
-#    end
-#
-#    it 'converts from windows to windows' do
-#      @dpaths[:windows].windows.should eq @drives[:windows]
-#    end
-#
-#    it 'converts from cygwin to rubywin' do
-#      @dpaths[:cygwin].rubywin.should eq @drives[:rubywin]
-#    end
-#
     it 'converts any drive to any drive' do 
       @drives.keys.repeated_permutation(2).each do |from, to|
         puts "converts from #{from} to #{to}"
         @dpaths[from].method(to).call.should eq @drives[to]
+      end
+    end
+
+    it 'returns false for any drive to *nix' do
+      @drives.keys.each do |from|
+        puts "false from #{from} to *nix"
+        @dpaths[from].nix.should be_false
+      end
+    end
+
+    it 'converts any unc to any unc' do 
+      @uncs.keys.repeated_permutation(2).each do |from, to|
+        puts "converts from #{from} to #{to}"
+        @upaths[from].method(to).call.should eq @uncs[to]
       end
     end
 
