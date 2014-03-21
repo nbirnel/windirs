@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'windirs'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2014-03-21'
   s.summary     = "translate between Cygwin, Windows, and Unix file paths"
   s.description = "Handy ways for dealing with directory paths when you are not
