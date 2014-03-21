@@ -3,10 +3,12 @@
 
 module Windirs
 
+  ##
+  # Represents a directory path, either absolute or relative.
+
   class Path
 
     def initialize path, cygdrive_prefix = '/cygdrive'
-      #dirs     = '(?<dirs>[/\\\].*)$'
       dirs     = '(?<dirs>.*)$'
       windrive = '((?<drive>[A-Z]):)'
       cygdrive = "(#{cygdrive_prefix}/(?<drive>[a-z]))"
@@ -20,24 +22,27 @@ module Windirs
       end
     end
 
-    def cygwin cygdrive_prefix = '/cygdrive'
-      drive = @drive ? "#{cygdrive_prefix}/#{@drive.downcase}" : nil
-      "#{drive}#{@dirs}".gsub('\\', '/')
+    def cygwin  prefix = '/cygdrive/'
+      fpath('/', prefix){|drive| "#{@drive.downcase}"}
     end
 
-    def rubywin
-      drive = @drive ? "#{@drive.upcase}:" : nil
-      "#{drive}#{@dirs}".gsub('\\', '/')
+    def nix     prefix = '/'
+      fpath('/', prefix){|drive| "#{@drive.downcase}"}
     end
 
-    def windows
-      drive = @drive ? "#{@drive.upcase}:" : nil
-      "#{drive}#{@dirs}".gsub('/', '\\')
+    def rubywin prefix = ''
+      fpath('/'){        |drive| "#{@drive.upcase}:"}
     end
 
-    def nix nix_prefix = ''
-      drive = @drive ? "#{nix_prefix}/#{@drive.downcase}" : nil
-      "#{drive}#{@dirs}".gsub('\\', '/')
+    def windows prefix = ''
+      fpath('\\'){       |drive| "#{@drive.upcase}:"}
+    end
+
+    private
+
+    def fpath del='/', prefix=''
+      drive = @drive ? "#{prefix}#{yield(@drive)}" : nil
+      "#{drive}#{@dirs}".gsub(/[\/\\\\]/, del)
     end
 
   end
