@@ -8,15 +8,10 @@ NAME = 'windirs'
 LIB  = FileList['lib/*.rb']
 BIN  = FileList['bin/*.rb']
 TEST = FileList['spec/*.rb']
-MAN  = FileList['man/man*/*.?']
-MANFILE = "#{NAME}.1"
+README = FileList['README.md']
 SPEC = "#{PROG}.gemspec"
 GEM  = "#{PROG}-#{VER}.gem"
-CLEAN.include('doc', '*.gem', 'README.md')
-MANDIR = '/usr/local/man/man1/'
-MANDEST = [MANDIR, MANFILE].join '/'
-README = 'README.md'
-READMESRC = 'doc-src/README.md'
+CLEAN.include('doc', '*.gem')
 
 task :all => [:spec, :install]
 
@@ -30,28 +25,16 @@ file 'doc' => LIB  do
   `rdoc lib/`        #FIXME shell out not cool
 end
 
-task :readme => README
-
-file README =>[READMESRC, MAN].flatten do
-  `cp #{READMESRC} #{README}`
-  `groff -tman -Thtml #{MAN} | sed '/<html/,$!d; /<style/,/<\\/style>/d' >>#{README}`
-end
-
 task :gem => GEM
 
-file GEM => [LIB, BIN, TEST, MAN, SPEC, README].flatten do
+file GEM => [LIB, BIN, TEST, SPEC, README].flatten do
   `gem build #{SPEC}`            #FIXME shell out not cool
 end
 
-task :install => [:install_gem, :install_man]
+task :install => [:install_gem]
 
 task :install_gem => GEM do
   `gem install #{GEM}`            #FIXME shell out not cool
-end
-
-task :install_man => MAN do
-  mkdir_p MANDIR
-  cp MAN, MANDIR
 end
 
 task :push do
@@ -64,5 +47,4 @@ end
 
 task :uninstall do
   `gem uninstall #{PROG}`     #FIXME shell out not cool
-  File.delete MANDEST
 end

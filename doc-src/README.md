@@ -1,14 +1,12 @@
 windirs
 ---------
 A ruby gem to convert between Unix, Windows, and Cygwin paths.
-NOTHING HAS BEEN IMPLEMENTED
 
 Installation
 ---------
 `gem install windirs`
 
 or, if you want the latest and the greatest, 
-or if you want the man page installed:
 
     git clone https://github.com/windirs
     cd windirs
@@ -24,10 +22,6 @@ Build Requirements
 ---------
 rake
 
-Developer Requirements
----------
-groff
-
 Inspiration and History
 ---------
 
@@ -39,6 +33,3 @@ MIT license
 
 [![Build Status](https://travis-ci.org/nbirnel/windirs.png?branch=master)](https://travis-ci.org/nbirnel/windirs)
 [![Code Climate](https://codeclimate.com/github/nbirnel/windirs.png)](https://codeclimate.com/github/nbirnel/windirs)
-
-Man page
----------
