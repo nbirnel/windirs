@@ -7,8 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Noah Birnel']
   s.email       = 'nbirnel@gmail.com'
   s.homepage    = 'http://github.com/nbirnel/windirs'
-  s.files       = ['README.md', 'windirs.gemspec', 'lib/windirs.rb', 'spec/windirs_spec.rb', 'bin/windirs']
+  s.files       = ['README.md', 'windirs.gemspec', 'lib/windirs.rb', 'spec/windirs_spec.rb']
   s.has_rdoc    = true
-  s.executables = ['windirs']
   s.license     = 'MIT'
 end
