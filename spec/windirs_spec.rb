@@ -29,6 +29,8 @@ describe Windirs do
     @upaths = Hash.new
     @uncs.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
 
+    @cygwin_home = Windirs::Path.new('/home')
+    @win_netdrive = Windirs::Path.new('R:')
   end
 
   describe Windirs::Path do
@@ -59,6 +61,16 @@ describe Windirs do
         puts "converts from #{from} to #{to}"
         @rpaths[from].method(to).call.should eq @relatives[to]
       end
+    end
+
+    it 'dereferences cygwin mounts' do
+      pending
+      @cygwin_home.cyg_deref.windows should eq 'C:/cygwin/home'
+    end
+
+    it 'dereferences windows network mounts' do
+      pending
+      @win_netdrive.win_deref.windows should eq '//1stdg/root'
     end
 
   end
