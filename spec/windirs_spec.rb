@@ -22,20 +22,28 @@ describe Windirs do
 
   describe Windirs::Path do
 
-    it 'converts from windows to cygwin' do
-      @dpaths[:windows].cygwin.should eq @drives[:cygwin]
+#    it 'converts from windows to cygwin' do
+#      @dpaths[:windows].cygwin.should eq @drives[:cygwin]
+#    end
+#
+#    it 'converts from windows to rubywin' do
+#      @dpaths[:windows].rubywin.should eq @drives[:rubywin]
+#    end
+#
+#    it 'converts from windows to windows' do
+#      @dpaths[:windows].windows.should eq @drives[:windows]
+#    end
+#
+#    it 'converts from cygwin to rubywin' do
+#      @dpaths[:cygwin].rubywin.should eq @drives[:rubywin]
+#    end
+#
+    it 'converts any drive to any drive' do 
+      @drives.keys.repeated_permutation(2).each do |from, to|
+        puts "converts from #{from} to #{to}"
+        @dpaths[from].method(to).call.should eq @drives[to]
+      end
     end
-
-    it 'converts from windows to rubywin' do
-      @dpaths[:windows].rubywin.should eq @drives[:rubywin]
-    end
-
-   # it 'converts everything' do
-   #   @drives.keys.repeated_permutation(2).each do |from, to|
-   #     puts "converts from #{from} to #{to}"
-   #     @dpaths[from].method(to).call.should eq @drives[to]
-   #   end
-   # end
 
   end
 
