@@ -114,6 +114,34 @@ module Windirs
       fpath('\\'){       |drive| "#{@drive.upcase}:"}
     end
 
+    #FIXME will need to stub or mock this to test properly?
+    #def win_deref
+    #  net_use = `net use #{@drive}:`
+    #  # FIXME check to see if we are on window-ish OS
+    #  # FIXME try to get path to net if on Cygwin and can't see net
+    #  # FIXME super stupid
+    #  remote  = net_use.split("\r\n").select do |l| 
+    #    l =~ /^Remote name\s*/ 
+    #  end[0].sub(/^Remote name\s*/, '')
+    #  @drive = nil
+    #  @dirs = "#{remote}/#{@dirs}"
+    #end
+    
+    #FIXME will need to stub or mock this to test properly?
+    #def cyg_deref
+    #  FIXME use mount similarly, with similar caveats to net use
+    #  m = `mount`.split("\n").map do |l| 
+    #    l =~ /^(?<dev>.*)\s+on\s+(?<mountp>.*)\s+type\s+.*$/
+    #  end
+    #C:/cygwin/bin on /usr/bin type ntfs (binary,auto)
+    #C:/cygwin/lib on /usr/lib type ntfs (binary,auto)
+    #C:/cygwin on / type ntfs (binary,auto)
+    #C: on /cygdrive/c type ntfs (binary,posix=0,user,noumount,auto)
+    #R: on /cygdrive/r type ntfs (binary,posix=0,user,noumount,auto)
+    #S: on /cygdrive/s type ntfs (binary,posix=0,user,noumount,auto)
+    #end
+
+
     private
 
     def fpath del='/', prefix=''
