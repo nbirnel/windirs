@@ -3,7 +3,9 @@ Gem::Specification.new do |s|
   s.version     = '0.0.0'
   s.date        = '2014-03-21'
   s.summary     = "translate between Cygwin, Windows, and Unix file paths"
-  s.description = "#{s.summary}"
+  s.description = "Handy ways for dealing with directory paths when you are not
+                   sure what platform your code will be running on, but you are
+                   sure what platform your code needs to print paths for."
   s.authors     = ['Noah Birnel']
   s.email       = 'nbirnel@gmail.com'
   s.homepage    = 'http://github.com/nbirnel/windirs'
