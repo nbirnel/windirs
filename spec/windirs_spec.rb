@@ -31,10 +31,10 @@ describe Windirs do
       end
     end
 
-    it 'returns false for any drive to *nix' do
+    it 'fakes a drive letter to *nix' do
       @drives.keys.each do |from|
-        puts "false from #{from} to *nix"
-        @dpaths[from].nix.should be_false
+        puts "fake drive letter from #{from} to *nix"
+        @dpaths[from].nix.should eq '/c/Users/joe/Desktop'
       end
     end
 
@@ -43,6 +43,14 @@ describe Windirs do
         puts "converts from #{from} to #{to}"
         @upaths[from].method(to).call.should eq @uncs[to]
       end
+    end
+
+    it 'converts relative paths' do
+      pending
+    end
+
+    it 'converts path fragments' do
+      pending
     end
 
   end

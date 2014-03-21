@@ -34,9 +34,8 @@ module Windirs
       "#{drive}#{@dirs}".gsub('/', '\\')
     end
 
-    def nix 
-      drive = @drive ? "#{@drive.upcase}:" : nil    #FIXME this is just for futrre metaprogramming
-      return false if drive
+    def nix nix_prefix = ''
+      drive = @drive ? "#{nix_prefix}/#{@drive.downcase}" : nil
       "#{drive}#{@dirs}".gsub('\\', '/')
     end
 
