@@ -3,6 +3,15 @@ require  "#{File.dirname(__FILE__)}/../lib/windirs"
 describe Windirs do
 
   before do
+    @relatives = {
+      :windows => '.\\somedir\\file',
+      :cygwin  => './somedir/file',
+      :rubywin => './somedir/file',
+      :nix     => './somedir/file',
+    }
+    @rpaths = Hash.new
+    @relatives.map{|k, v| @rpaths[k] = Windirs::Path.new(v)}
+
     @drives = {
       :cygwin  => '/cygdrive/c/Users/joe/Desktop',
       :windows => 'C:\Users\joe\Desktop',
@@ -12,7 +21,7 @@ describe Windirs do
     @drives.map{|k, v| @dpaths[k] = Windirs::Path.new(v)}
 
     @uncs = {
-      :windows => '\\\\windomain\somedir\file',
+      :windows => '\\\\windomain\\somedir\\file',
       :cygwin  => '//windomain/somedir/file',
       :rubywin => '//windomain/somedir/file',
       :nix     => '//windomain/somedir/file',
@@ -46,11 +55,10 @@ describe Windirs do
     end
 
     it 'converts relative paths' do
-      pending
-    end
-
-    it 'converts path fragments' do
-      pending
+      @relatives.keys.repeated_permutation(2).each do |from, to|
+        puts "converts from #{from} to #{to}"
+        @rpaths[from].method(to).call.should eq @relatives[to]
+      end
     end
 
   end

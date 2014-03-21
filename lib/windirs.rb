@@ -6,7 +6,8 @@ module Windirs
   class Path
 
     def initialize path, cygdrive_prefix = '/cygdrive'
-      dirs     = '(?<dirs>[/\\\].*)$'
+      #dirs     = '(?<dirs>[/\\\].*)$'
+      dirs     = '(?<dirs>.*)$'
       windrive = '((?<drive>[A-Z]):)'
       cygdrive = "(#{cygdrive_prefix}/(?<drive>[a-z]))"
       drive    = "(#{windrive}|#{cygdrive})?"
