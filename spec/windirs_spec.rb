@@ -30,7 +30,6 @@ describe Windirs do
     @uncs.map{|k, v| @upaths[k] = Windirs::Path.new(v)}
 
     @cygwin_home = Windirs::Path.new('/home')
-    @win_netdrive = Windirs::Path.new('R:')
   end
 
   describe Windirs::Path do
@@ -65,12 +64,12 @@ describe Windirs do
 
     it 'dereferences cygwin mounts' do
       pending
-      @cygwin_home.cyg_deref.windows should eq 'C:/cygwin/home'
+      @cygwin_home.cyg_deref.windows.should eq 'C:/cygwin/home'
     end
 
+    # FIXME This is not much of a test...
     it 'dereferences windows network mounts' do
-      pending
-      @win_netdrive.win_deref.windows should eq '//1stdg/root'
+      @dpaths[:windows].win_deref.windows.should eq @drives[:windows]
     end
 
   end
