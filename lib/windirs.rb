@@ -124,10 +124,10 @@ module Windirs
       return self unless ENV['OS'] == 'Windows_NT'
 
       # FIXME try to get path to net if on Cygwin and can't see net
-      net_use = `net use #{@drive}:`
+      net_use = `net use #{@drive}: 2>&1`
       return self unless $?.exitstatus == 0
       remote_line  = net_use.split("\r\n").select{|l| l =~ /^Remote name\s*/}
-      drive = @drive
+      return self unless remote_line.length == 1
       drive = remote_line[0].sub(/^Remote name\s*/, '')
       Path.new "#{drive}#{@dirs}"
     end

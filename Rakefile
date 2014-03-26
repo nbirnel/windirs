@@ -2,7 +2,7 @@ require 'rspec/core/rake_task'
 require 'rake/clean'
 RSpec::Core::RakeTask.new('spec')
 
-VER  = '0.0.2'
+VER  = '0.0.3'
 PROG = 'windirs'
 NAME = 'windirs'
 LIB  = FileList['lib/*.rb']

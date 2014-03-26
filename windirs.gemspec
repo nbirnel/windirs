@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'windirs'
-  s.version     = '0.0.2'
-  s.date        = '2014-03-24'
+  s.version     = '0.0.3'
+  s.date        = '2014-03-25'
   s.required_ruby_version = '>=1.9.2'
   s.summary     = "translate between Cygwin, Windows, and Unix file paths"
   s.description = "Handy ways for dealing with directory paths when you are not
